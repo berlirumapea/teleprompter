@@ -15,7 +15,8 @@ const Auth = () => {
     setPassword(e.target.value);
   }
 
-  function signIn() {
+  function signIn(e) {
+    e.preventDefault();
     axios
       .post(
         'http://192.168.1.12:9999/auth',
@@ -50,29 +51,31 @@ const Auth = () => {
             textAlign='center'
           />
         </div>
-        <div className='form-item'>
-          <Input
-            placeholder='Username'
-            name='username'
-            type='text'
-            value={username}
-            className='savior-input'
-            onChange={handleInputOnChange}
-          />
-        </div>
-        <div className='form-item'>
-          <Input
-            placeholder='Password'
-            name='password'
-            type='password'
-            value={password}
-            className='savior-input'
-            onChange={handleInputOnChange}
-          />
-        </div>
-        <div className='form-item'>
-          <Button content='Sign In' fluid onClick={signIn} />
-        </div>
+        <form onSubmit={signIn}>
+          <div className='form-item'>
+            <Input
+              placeholder='Username'
+              name='username'
+              type='text'
+              value={username}
+              className='savior-input'
+              onChange={handleInputOnChange}
+            />
+          </div>
+          <div className='form-item'>
+            <Input
+              placeholder='Password'
+              name='password'
+              type='password'
+              value={password}
+              className='savior-input'
+              onChange={handleInputOnChange}
+            />
+          </div>
+          <div className='form-item'>
+            <Button content='Sign In' fluid type='submit' />
+          </div>
+        </form>
       </div>
     </div>
   );
