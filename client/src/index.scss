@@ -87,10 +87,15 @@ body {
       font-family: 'Roboto', sans-serif;
       color: #313131;
       border-color: #e0e0e0;
+      outline: none;
     }
 
     .preset-messages {
       margin-top: 8px;
+      
+      .preset-message {
+        margin-bottom: 4px;
+      }
     }
   }
 
@@ -101,21 +106,14 @@ body {
 }
 
 .prompter-container {
-  @extend %column-center;
+  // @extend %column-center;
+  display: flex;
+  flex-direction: column;
   background: black;
   color: white;
   width: 100%;
-  min-height: 100vh;
-  h1 {
-    word-break: break-word;
-    padding: 0 1em;
-    font-size: 6vw;
-    @media (max-width: 600px) {
-      padding: 0 1.2em;
-      font-size: 3vh;
-      line-height: 1.5;
-    }
-  }
+  height: 100vh;
+  overflow: hidden;
   .message {
     @extend %column-center;
     .shownMassage {
@@ -124,21 +122,35 @@ body {
   }
 
   .sender-name-container {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    padding: 8px 16px;
-    background: white;
+    // position: absolute;
+    // top: 8px;
+    // left: 8px;
+    height: 8vh;
+    background: rgb(255, 255, 255);
     color: black;
     font-size: 16px;
-    border-radius: 4px;
-    p {
-      margin-bottom: 4px;
-    }
-    span {
-      font-size: 12px;
+    z-index: 100;
+    .sender-name {
+      height: 100%;
+      display: flex;
+      margin-left: 24px;
+      justify-content: center;
+      flex-direction: column;
+      p {
+        margin-bottom: 0px;
+      }
+      span {
+        font-size: 12px;
+      }
     }
   }
+}
+
+#message-textfit {
+  width: 100%;
+  align-self: flex-end;
+  word-break: keep-all;
+  hyphens: auto
 }
 
 .message_textarea {

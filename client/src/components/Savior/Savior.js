@@ -11,9 +11,29 @@ const Savior = () => {
   const [emojiOpen, setEmojiOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [messages, setMessages] = React.useState([]);
-  const [presetMessages] = React.useState(['1', '2', '3', '4', '5', '6']);
+  const [presetMessages] = React.useState([
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+  ]);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   let textAreaRef = React.useRef();
+  let pickerRef = React.useRef();
 
   React.useEffect(() => {
     if (!localStorage.getItem('username')) {
@@ -123,6 +143,7 @@ const Savior = () => {
               emoji=''
               color='#313131'
               onClick={emojiOnClick}
+              ref={pickerRef}
               native={true}
               // sheetSize={16}
             />
