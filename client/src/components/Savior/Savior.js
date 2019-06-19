@@ -4,14 +4,15 @@ import { Picker, Emoji } from 'emoji-mart';
 import io from 'socket.io-client';
 import { navigate } from '@reach/router';
 import moment from 'moment';
+import config from '../../globals/config';
 
-const socket = io('http://192.168.1.12:9999');
+const socket = io(`${config.SERVER_URL}`);
 
 const Savior = () => {
   const [emojiOpen, setEmojiOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [messages, setMessages] = React.useState([]);
-  const [presetMessages] = React.useState(['1', '2', '3', '4', '5', '6']);
+  const [presetMessages] = React.useState(config.PRESET_MESSAGES);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   let textAreaRef = React.useRef();
 
@@ -21,18 +22,6 @@ const Savior = () => {
     }
   }, []);
 
-  // const autosize = () => {
-  //   if (
-  //     !textAreaRef.current.ref.current.scrollHeight >
-  //     textAreaRef.current.ref.current.style.height
-  //   ) {
-  //     setTimeout(function() {
-  //       textAreaRef.current.ref.current.style.height =
-  //         textAreaRef.current.ref.current.scrollHeight + 'px';
-  //     }, 0);
-  //   }
-  // };
-
   const messageOnChange = e => {
     setMessage(e.target.value);
     if (emojiOpen) setEmojiOpen(false);
@@ -40,7 +29,6 @@ const Savior = () => {
 
   const messageOnSubmit = e => {
     e.preventDefault();
-    // setIsSubmitted(true);
     const msgData = {
       username: localStorage.getItem('username'),
       message,
@@ -83,7 +71,6 @@ const Savior = () => {
           className='message-input'
           value={message}
           onChange={messageOnChange}
-          // onKeyDown={autosize}
           disabled={isSubmitted}
           maxLength='140'
           rows='5'
@@ -92,7 +79,7 @@ const Savior = () => {
           {presetMessages.map((pre, i) => (
             <Button
               key={i}
-              content={pre}
+              content={pre.text}
               className='preset-message'
               onClick={() => presetOnClick(pre)}
               type='button'
@@ -124,7 +111,6 @@ const Savior = () => {
               color='#313131'
               onClick={emojiOnClick}
               native={true}
-              // sheetSize={16}
             />
           </div>
         )}
