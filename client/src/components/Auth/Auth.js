@@ -19,7 +19,7 @@ const Auth = () => {
     e.preventDefault();
     axios
       .post(
-        'http://192.168.1.12:9999/auth',
+        'http://192.168.1.14:9999/auth',
         {},
         {
           auth: {

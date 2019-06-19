@@ -92,9 +92,42 @@ body {
 
     .preset-messages {
       margin-top: 8px;
-      
+
       .preset-message {
         margin-bottom: 4px;
+      }
+    }
+
+    .emoji-picker {
+      float: left;
+      position: absolute;
+      z-index: 100;
+    }
+
+    .message-footer {
+      margin-top: 16px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .left {
+        vertical-align: bottom;
+        .chars_left {
+          display: inline;
+          font-weight: 700;
+          color: #313131;
+          margin-right: 12px;
+          span {
+            font-weight: 500;
+          }
+        }
+        button {
+          text-align: end;
+          background: none;
+          border: none;
+          outline: none;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -102,6 +135,12 @@ body {
   .message-info {
     position: absolute;
     top: 1em;
+  }
+
+  .message-history {
+    width: 80%;
+    margin-top: 42px;
+    position: relative;
   }
 }
 
@@ -144,61 +183,18 @@ body {
       }
     }
   }
-}
 
-#message-textfit {
-  width: 100%;
-  align-self: flex-end;
-  word-break: keep-all;
-  hyphens: auto
-}
-
-.message_textarea {
-  padding: 10px;
-}
-
-.message-footer {
-  margin-top: 16px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .left {
-    vertical-align: bottom;
-    .chars_left {
-      display: inline;
-      font-weight: 700;
-      color: #313131;
-      margin-right: 12px;
-      span {
-        font-weight: 500;
-      }
-    }
-    button {
-      text-align: end;
-      background: none;
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
+  #message-textfit {
+    width: 100%;
+    align-self: flex-end;
+    word-break: keep-all;
+    hyphens: auto;
   }
-}
-
-.emoji-picker {
-  float: left;
-  position: absolute;
-  z-index: 100;
-}
-
-.message-history {
-  width: 80%;
-  margin-top: 42px;
-  position: relative;
 }
 
 .history-box {
   width: 100%;
-  height: 400px;
+  max-height: 400px;
   margin-left: 16px;
   overflow-y: auto;
   ul {
