@@ -1,8 +1,10 @@
 import React from 'react';
 import io from 'socket.io-client';
-import moment from 'moment';
 import { Textfit } from 'react-textfit';
-const socket = io('http://192.168.1.12:9999');
+// import moment from 'moment';
+import config from '../../globals/config';
+
+const socket = io(`${config.SERVER_URL}`);
 
 const Prompter = () => {
   const [messages, setMessages] = React.useState([]);
@@ -42,7 +44,7 @@ const Prompter = () => {
         <div className='sender-name-container'>
           <div className='sender-name'>
             <p>{shownMessage.username}</p>
-            <span>{moment(shownMessage.timestamp).fromNow()}</span>
+            {/* <span>{moment(shownMessage.timestamp).fromNow()}</span> */}
           </div>
         </div>
       )}
@@ -59,16 +61,11 @@ const Prompter = () => {
             // float: 'right',
             margin: 'auto',
           }}
-          max={500}
+          max={200}
         >
-          {/* lorem ipsum doler zuma awd wa awdaw ad a aw dawda aw aw aw awd ad a daw aw aw daw dawda aw aw aw dwa aw aw adawdawd ad awdawdawd ad aw d d dadadawd */}
           {shownMessage.message ? shownMessage.message : 'No Message'}
         </Textfit>
       </div>
-      {/* <h1 ref={messageRef} className='animated'>
-        {shownMessage.message}
-      </h1>
-      {!shownMessage.message && <h1>No Message</h1>} */}
     </div>
   );
 };
